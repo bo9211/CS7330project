@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<nav class="navbar navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Program Evaluation</a>
+      <div class="offcanvas offcanvas-end text-bg-primary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      </div>
+    </div>
+</nav>
+<div class="mt-5 pt-5">
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-success" href="add_evaluation/">
+                <i class="bi bi-plus-circle"></i> Add Evaluation
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Evaluation List</strong>
+            </div>
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered mx-auto">
+                      <thead>
+                        <tr>
+                          <th scope="col">Evaluate_Id</th>
+                          <th scope="col">Method</th>
+                          <th scope="col">LevelA_Stu_Num</th>
+                          <th scope="col">LevelB_Stu_Num</th>
+                          <th scope="col">LevelC_Stu_Num</th>
+                          <th scope="col">LevelF_Stu_Num</th>
+                          <th scope="col">Improvement_Suggestions</th>
+                          <th scope="col">Course_Id</th>
+                          <th scope="col">Section_Id</th>
+                          <th scope="col">Operations</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for obj in queryset %}
+                        <tr>
+                            <th>{{ obj.evaluate_id }}</th>
+                            <td>{{ obj.method }}</td>
+                            <td>{{obj.levelA_stu_num}}</td>
+                            <td>{{obj.levelB_stu_num}}</td>
+                            <td>{{obj.levelC_stu_num}}</td>
+                            <td>{{obj.levelF_stu_num}}</td>
+                            <td>{{obj.improvement_suggestions}}</td>
+                            <td>{{obj.course_id}}</td>
+                            <td>{{obj.section_id}}</td>
+                            <td>
+                              <a class="btn btn-warning"href="#">Edit</a>
+                              <a class="btn btn-danger" href="#">Delete</a>
+                            </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
