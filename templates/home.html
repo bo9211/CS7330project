@@ -46,9 +46,21 @@
     <div class="col-md-8">
       <img src="{% static 'img/img.png' %}" alt="Promgram Evaluation" width="600" height="630">
     </div>
-    <div class="col-md-4 d-flex align-items-center justify-content-center">
-      <a href="{% url "university:evaluationquery" %}" class="btn btn-primary btn-lg">Queries involving evaluations</a>
+    <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
+      <div class="card mb-3" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">Evaluation & Suggestions</h5>
+          <p class="card-text">Access detailed evaluation data and suggestions for improvement.</p>
+          <a href="{% url 'university:evaluationquery' %}" class="btn btn-primary">Go to Evaluations</a>
+        </div>
+      </div>
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">Pass Rate</h5>
+          <p class="card-text">Review pass rate statistics and analyze performance metrics.</p>
+          <a href="{% url 'university:passratequery' %}" class="btn btn-primary">View Pass Rates</a>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
 {% endblock  %}

@@ -28,5 +28,5 @@ urlpatterns = [
     path('evaluation/', views.evaluation, name='evaluation'),
     # Queries involving evaluations
     path('evaluationquery/', views.evaluationquery, name='evaluationquery'),
-    
+    path('passratequery/', views.passratequery, name='passratequery'),
 ]

@@ -9,14 +9,15 @@
       <h2>total evaluation information & improvement suggestions </h2>
         
       <!-- Search Form -->
-      <form id="searchForm" onsubmit="return validateForm()">
+      <!-- <form id="searchForm" onsubmit="return validateForm()">
         <div class="input-group mb-3">
-            <input type="text" id="semesterInput" class="form-control" placeholder="Enter semester" aria-label="Enter semester">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="text" id="semesterInput" class="form-control" placeholder="Enter semester(eg 20242024SPRING)" aria-label="Enter semester(eg 20242024SPRING)">
+            <button type="submit" class="btn btn-primary">Search</button>
         </div>
-      </form>
-
-      <table class="table">
+      </form> -->
+      <!-- Search Form for Evaluations -->
+      
+      <!-- <table class="table">
           <thead>
               <tr>
                   <th scope="col">Course ID</th>
@@ -36,7 +37,7 @@
             <td>NOT ENTERD</td>
           </tbody>
       </table>
-  </div>
+  </div> -->
 <!-- 
   <script>
     function searchSemester() {
@@ -50,110 +51,70 @@
         return false;  // 阻止表单实际提交
     }
   </script>  -->
-
-    <!-- 及格率表 -->
-  <div class="overflow-scroll" style="max-height: 300px;">
-      <h2>pass rate</h2>
-      <form id="searchForm2" onsubmit="return searchSemesterAndPercentage()">
+      <form action="{% url 'university:evaluationquery' %}" method="get">
         <div class="input-group mb-3">
-            <input type="text" id="semesterInput2" class="form-control" placeholder="Enter semester" aria-label="Enter semester">
-            <input type="text" id="percentageInput" class="form-control" placeholder="Enter percentage" aria-label="Enter percentage">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <input type="text" id="semesterInput" name="semester" class="form-control" placeholder="Enter semester (e.g., 2024Spring)" aria-label="Enter semester">
+            <button type="submit" class="btn btn-primary">Search</button>
         </div>
       </form>
-      <table class="table">
-          <thead>
+      {% if initial_load %}
+          <p>Please enter a semester and submit to see data.</p>
+      {% elif message %}
+          <p>{{ message }}</p>
+      {% elif queryset %}
+      <!-- Table to display evaluations -->
+      <div>Suggestions: {{ suggestions_status }}</div>
+      <div>Evaluated: {{ evaluated_status }}</div>
+      <table class="table" id="evaluationsTable">
+        <thead>
             <tr>
-              <th scope="col">Course ID</th>
-              <th scope="col">Section ID</th>
-              <th scope="col">Semester</th>
-              <th scope="col">Year</th>
-              <th scope="col">Pass Rate</th>
+                <th scope="col">Course ID</th>
+                <th scope="col">Section ID</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Year</th>
+                <th scope="col">Suggestions</th>
+                <th scope="col">Evaluated</th>
             </tr>
-          </thead>
-          <tbody>
-              <!-- 这里添加动态数据 -->
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>示例课程2</td>
-                <td>李老师</td>
-                <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>示例课程2</td>
-                <td>李老师</td>
-                <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>示例课程2</td>
-                <td>李老师</td>
-                <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>示例课程2</td>
-                <td>李老师</td>
-                <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>示例课程2</td>
-                <td>李老师</td>
-                <td>88%</td>
-              </tr>
-              <tr>
-                  <th scope="row">1</th>
-                  <td>示例课程2</td>
-                  <td>李老师</td>
-                  <td>88%</td>
-              </tr>
-              <!-- 更多行 -->
-          </tbody>
-      </table>
+        </thead>
+        <tbody>
+            <!-- Dynamic data filling from queryset -->
+            {% for eval in queryset %}
+            <tr>
+                <td>{{ eval.course.course_id }}</td>
+                <td>{{ eval.section.section_id }}</td>
+                <td>{{ eval.section.semester }}</td>
+                <td>{{ eval.section.year }}</td>
+                <td>{{ eval.improvement_suggestions|default:"Not entered" }}</td>
+                <td>{% if eval.levelA_stu_num or eval.levelB_stu_num or eval.levelC_stu_num or eval.levelF_stu_num %}Yes{% else %}No{% endif %}</td>
+            </tr>
+                {% empty %}
+            <tr>
+                <td colspan="6">No data available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
     </div>
+    {% endif %}
+  </div>
+
+  <!-- 及格率表 -->
+  <!-- <div class="mb-4 overflow-scroll" style="max-height: 300px;">
+    <h2>pass rate</h2>
+    <form action="{% url 'university:evaluationquery' %}" method="get">
+        <div class="input-group mb-3">
+            <input type="text" name="semester" class="form-control" placeholder="Enter semester (e.g., 2024Spring)" aria-label="Enter semester">
+            <input type="text" name="percentage" class="form-control" placeholder="Enter percentage" aria-label="Enter percentage">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+    {% if pass_rate_status %}
+    <div>Pass Rate Status: {{ pass_rate_status }}</div>
+    {% endif %}
+  </div> -->
 </div>
 {% endblock %}

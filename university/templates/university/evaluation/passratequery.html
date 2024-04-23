@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Pass Rate Query</h1>
+    <form action="{% url 'university:passratequery' %}" method="get">
+        <div class="input-group mb-3">
+            <input type="text" name="semester" class="form-control" placeholder="Enter semester (e.g., 2024Spring)" aria-label="Enter semester">
+            <input type="text" name="percentage" class="form-control" placeholder="Enter pass rate percentage threshold (e.g., 75)" aria-label="Enter percentage">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    {% if pass_rate %}
+        <div class="alert alert-success">{{ pass_rate }}</div>
+    {% elif message %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% elif error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+</div>
+{% endblock %}
