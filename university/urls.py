@@ -26,4 +26,7 @@ urlpatterns = [
     
     # Evaluation
     path('evaluation/', views.evaluation, name='evaluation'),
+    # Queries involving evaluations
+    path('evaluationquery/', views.evaluationquery, name='evaluationquery'),
+    
 ]

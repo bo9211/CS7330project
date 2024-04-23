@@ -59,3 +59,7 @@ def objective(request):
 def evaluation(request):
     queryset = models.Evaluation.objects.all()
     return render(request, 'university/evaluation/evaluation.html',{'queryset':queryset})
+ # Queries involving evaluations
+def evaluationquery(request):
+    queryset = models.Evaluation.objects.all()
+    return render(request, 'university/evaluation/evaluationquery.html',{'queryset':queryset})
