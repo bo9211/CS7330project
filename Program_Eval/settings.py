@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'Program_Eval.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'programeval',
-        'USER': 'root',
-        'PASSWORD': '12345678',
+        'NAME': 'program_eval_dbprog',
+        'USER': 'cs7330program',
+        'PASSWORD': 'pw7330',
         'HOST': 'localhost',
         'PORT': '3306',
     }
