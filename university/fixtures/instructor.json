@@ -1,0 +1,16 @@
+[
+    {
+        "model": "university.instructor",
+        "pk": "IN450",
+        "fields": {
+            "name": "Dr. Alice Johnson"
+        }
+    },
+    {
+        "model": "university.instructor",
+        "pk": "IN451",
+        "fields": {
+            "name": "Prof. Bob Smith"
+        }
+    }
+]

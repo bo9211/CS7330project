@@ -1,0 +1,20 @@
+[
+    {
+        "model": "university.objective",
+        "pk": "OBJ100",
+        "fields": {
+            "title": "Understand Fundamental Programming Concepts",
+            "description": "Students will learn the basic constructs of computer programming.",
+            "course": "CS101"
+        }
+    },
+    {
+        "model": "university.objective",
+        "pk": "OBJ200",
+        "fields": {
+            "title": "Analyze Electrical Circuits",
+            "description": "Students will gain the ability to analyze simple to moderate complexity circuits.",
+            "course": "EE201"
+        }
+    }
+]

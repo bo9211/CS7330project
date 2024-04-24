@@ -1,0 +1,16 @@
+[
+    {
+        "model": "university.evaluation",
+        "pk": 1,
+        "fields": {
+            "method": "Final Exam",
+            "levelA_stu_num": 15,
+            "levelB_stu_num": 40,
+            "levelC_stu_num": 50,
+            "levelF_stu_num": 15,
+            "improvement_suggestions": "More hands-on lab sessions recommended.",
+            "course": "CS101",
+            "section": 1
+        }
+    }
+]

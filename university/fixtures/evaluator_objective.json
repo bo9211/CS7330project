@@ -1,0 +1,10 @@
+[
+    {
+        "model": "university.evaluatorobjective",
+        "pk": 1,
+        "fields": {
+            "evaluation": 1,
+            "objective": "OBJ100"
+        }
+    }
+]
