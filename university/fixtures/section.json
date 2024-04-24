@@ -1,0 +1,26 @@
+[
+    {
+        "model": "university.section",
+        "pk": 1,
+        "fields": {
+            "course": "CS101",
+            "instructor": "IN450",
+            "section_id": "101",
+            "semester": "Spring",
+            "year": 2024,
+            "enrolled_stu_num": 120
+        }
+    },
+    {
+        "model": "university.section",
+        "pk": 2,
+        "fields": {
+            "course": "EE201",
+            "instructor": "IN451",
+            "section_id": "102",
+            "semester": "Fall",
+            "year": 2024,
+            "enrolled_stu_num": 85
+        }
+    }
+]

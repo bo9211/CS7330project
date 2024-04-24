@@ -16,9 +16,18 @@ class DegreeCourse(models.Model):
     degree = models.ForeignKey(Degree, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     is_core = models.BooleanField(default=False)
+    degree_name = models.CharField(max_length=255, default='Default Name')
+    degree_level = models.CharField(max_length=50, default='Default Level')
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  
+            self.degree_name = self.degree.name
+            self.degree_level = self.degree.level
+        super().save(*args, **kwargs)
 
     class Meta:
         unique_together = ('degree', 'course')
+
 
 class Instructor(models.Model):
     id = models.CharField(max_length=20, primary_key=True)
@@ -59,7 +68,14 @@ class Evaluation(models.Model):
     improvement_suggestions = models.TextField(blank=True, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)  
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
-    
+    degree_name = models.CharField(max_length=255, default='Default Name')
+    degree_level = models.CharField(max_length=50, default='Default Level')
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  
+            self.degree_name = self.degree.name
+            self.degree_level = self.degree.level
+        super().save(*args, **kwargs)
 
 class EvaluatorObjective(models.Model):
     evaluation = models.ForeignKey(Evaluation, on_delete=models.CASCADE)

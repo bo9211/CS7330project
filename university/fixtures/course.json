@@ -1,0 +1,16 @@
+[
+    {
+        "model": "university.course",
+        "pk": "CS101",
+        "fields": {
+            "name": "Introduction to Programming"
+        }
+    },
+    {
+        "model": "university.course",
+        "pk": "EE201",
+        "fields": {
+            "name": "Circuit Theory"
+        }
+    }
+]

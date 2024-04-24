@@ -1,0 +1,18 @@
+[
+    {
+        "model": "university.degree",
+        "pk": 1,
+        "fields": {
+            "name": "Computer Science",
+            "level": "BS"
+        }
+    },
+    {
+        "model": "university.degree",
+        "pk": 2,
+        "fields": {
+            "name": "Electrical Engineering",
+            "level": "MS"
+        }
+    }
+]
